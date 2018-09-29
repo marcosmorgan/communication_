@@ -1,0 +1,567 @@
+---
+title: ""
+output: html_document
+---
+
+#Proptocol
+<!-- Clean --> 
+```{r, echo=FALSE}
+rm(list=ls())
+```
+
+<!-- Add parameters --> 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+name <- "experiment_1"
+setwd("/Volumes/Promise_Pegasus/marcos_dropbox/Dropbox/Lab/Marcos_files/Organization/protocols_marcos/trnas/scripts")
+experiment <- read.csv(paste("../data/", name, "/experiment.csv", sep = ""), sep=";")
+samples    <- as.numeric(as.character(subset(experiment, type=="samples")$value_1))
+
+mastermix    <- read.csv("../data/mastermix.csv", sep=";", stringsAsFactors=FALSE)
+mastermix$ul <- as.numeric(gsub(",", ".", mastermix$ul))
+```
+
+###Experiment
+```{r, echo=FALSE}
+paste("Experiment: ", name, ", Number of sampels: ", samples, sep="")
+coding <- subset(experiment, type=="sample")[,c("value_1", "value_3", "value_5")]
+rownames(coding) <- seq(length=nrow(coding))
+colnames(coding) <- c("Sample", "Code", "Library")
+show(coding)
+```
+
+<!-- Load libraries --> 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(knitr)
+```
+
+###First day
+#### Timing
+> X min -> (X min) -> X h -> (X h) -> X min -> (X h) -> X min.
+
+##XXX (Part 1)
+#### Common instrumentation 
++ Common instrument 1
++ Common instrument 2
+
+> Relevant comment.
+
+Todo: set PCR protocols
+
+1.
+* Transfer **10 ul** of sample (aprox 10 ug) to a 1.5 ml low binding tube
+* Transfer also **5 ul** of RNA ladder 0.1-2 Kb.
+* Transfer also **5 ul** of RNA ladder Low Range ssRNA.
+* Add **10 ul** of 1x Gel Loading Buffer II.
+* Heat the samples to **90 C** for **5 min**.
+
+* Transfer samples to ice.
+* **IMPORTANT**: flush the wells before loading. 
+* Load the samples.
+* Run **6%** TBE-Urea gel for **40 min** at **180 V** until lower dye is close to the bottom.
+
+* Stain in **200 ml** of TBE with **10 ul** of Et-Br **10 mins** at **RT**.
+
+* Cut band between **26-100 nt**.
+* Crush the gel piece into small pieces. 
+* Add **400 ul** TE or RNASe-free water.
+* Incubate shaking at **1100 rpm** for **1 h** at **37 C**
+
+* Place on dry ice for **2 min** and 
+* Place back at **1100 rpm** for **1 h** at **37 C**.
+
+2.
+* Placed two 1 cm glass pre-filters into a Costar SpinX column
+  
+3.  
+* Transfer the liquid portion of the supernatant into the Costar SpinX column.
+* Spin at **13000 rpm** for **1 min** into a 1.5 ml tube. 
+* Add **0.5 ul** glycogen or glycoblue.
+* Add **40 ul** sodium acetate. 
+* Mix and then add **1 ml** 100% ethanol. 
+* Mix again and precipitate **ON** at **-20C**.
+
+###Second day
+#### Timing
+> 1 h 30 min -> (1 h) -> 30 min 
+
+* Spin for **15 min** at **15000 rpm** at **4 C**. 
+
+* Remove supernatant and add **0.5 ml** of **80%** ethanol. 
+* Spin for **5 min** at **15000 rpm** at **4 C**. 
+* Resuspend in **5 ul** of water.
+
+##Hydrolysis (Part 2)
+#### Common instrumentation 
++ PCR machine for 1 hour
+
+> Following protocol in the paper [Genome-wide mapping of RNA structure...](http://www.nature.com/nprot/journal/v8/n5/pdf/nprot.2013.045.pdf)  
+
+4.
+* Transfer **20 ul per sample** of 1X Alkaline Hydrolisis Buffer to a PCR tube and heat for **1 minute** at **95 C**.
+
+5.
+* Transfer RNA to a PCR tube and heat for **15 seconds** at **95 C**.
+
+6.
+* Add **15 ul** of 1X Alkaline Hydrolisis Buffer to each RNA sample.
+* Heat the tubes in a PCR block for **5 min** at **95 C**.
+
+* **IMPORTANT**: Transfer immideately on ice. 
+* Add **2 ul** of 3 M sodium acetate.
+* Add **80 ul** of **nuclease free water**.
+* Add **350 ul** of **Buffer RLT** and mix
+* Add **250 ul** of **Ethanol 100%** and mix by pipetting.
+* Transfer **700 ul** of sample to a RNeasy MiniElute spin column.
+* Centrifuge for **15 s** at **max speed**.
+* Discard supernatant.
+* Add **500 ul** of **Buffer RPE**.
+* Centrifuge for **15 s** at **max speed**.
+* Discard supernatant.
+* Add **500 ul** of **ethanol 80%**.
+* Centrifuge for **2 min** at **max speed**.
+* Discard supernatant.
+* Open the lid of the tubes.
+* Centrifuge for **5 min** at **max speed**.
+
+* Discard supernatant.
+* Place the column in a 1.5 ml low binding tube.
+* Add **22 ul** of **Nuclease free water** to the center of the column.
+* Centrifuge for **1 min** at **max speed**.
+
+##Dephosphorylation (Part 3)
+#### Common instrumentation
+Heat block at 37 C for 1 hour.
+
+The [hydrolyzed RNA](https://en.wikipedia.org/wiki/RNA_hydrolysis) was dephosphorylated using [calf intestinal alkaline phosphatase](https://www.neb.com/~/media/Catalog/All-Products/F6BB7751BDE54B2D8AF4565240DB8793/Datacards%20or%20Manuals/M0290Datasheet-Lot0621208.pdf) (NEB)
+Following protocol in the paper [Genome-wide mapping of RNA structure...](http://www.nature.com/nprot/journal/v8/n5/pdf/nprot.2013.045.pdf) 
+
+7.
+* Prepare phosphatase reaction mix
+    + 20 ul of Nuclease-free water
+    + 5 ul of 10 X NEB Buffer 3 (2 or 4)
+    + 2.5 ul of Superasin
+    + 2.5 ul of CIP 
+
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "phosphatase")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+
+8.
+* Add **30 ul** of reaction mix to the RNA sammple.
+* Incubate at **37 C** for **1 hour**.
+
+* Add **50 ul** of **nuclease-free water**.
+* Add **350 ul** of **Buffer RLT** and mix
+* Add **250 ul** of **Ethanol 100%** and mix by pipetting.
+* Transfer **700 ul** of sample to a RNeasy MiniElute spin column.
+* Centrifuge for **15 s** at **max speed**.
+* Discard supernatant.
+* Add **500 ul** of **Buffer RPE**.
+* Centrifuge for **15 s** at **max speed**.
+* Discard supernatant.
+* Add **500 ul** of **ethanol 80%**.
+* Centrifuge for **2 min** at **max speed**.
+* Discard supernatant.
+* Open the lid of the tubes.
+* Centrifuge for **5 min** at **max speed**.
+
+* Discard supernatant.
+* Place the column in a 1.5 ml low binding tube.
+* Add **14 ul** of **nuclease-free water** to the center of the column.
+* Centrifuge for **1 min** at **max speed**.
+
+## Third day ##
+#### Timing
+> 1 h -> (2 h) -> 1h 30 min -> (30 min) ->  40 min -> (40 min) -> 1 h -> (1 h) -> 2 min -> (1 h) -> 30 min.
+
+##3' ligation (Part 4)
+#### Common instrumentation
+PCR machine for 3 hours
+
+9. 
+* Add **12 ul** of **nuclease-free water** to the **3 ul** of **3'adapter stock**.
+* Transfer **2 ul** of the diluted adapter to a PCR tube.
+
+10.
+* Transfer the **12 ul** of sample to the PCR tube with the adapter.
+* Incubate at **70 C** for **2 minutes** (INC70) and store on **ice** for **3 min**.
+
+11.
+* Prepare ligation reaction mix.
+    + 2 ul of 10X RNA ligation buffer (-ATP).
+    + 3 ul of T4 RNA Ligase 1.
+    + 1 ul of RNasin.
+
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "3ligase")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+
+12.
+* Add **6 ul** of the ligation reaction mix to the **12 ul** of sample with adapter.
+* Incubate at **22 C** for **2 hours** in a thermal cycler (INC22).
+
+##Pull-down (Part 5)
+#### Common instrumentation
+Magnetic racks
+Thermo block at 50 C
+Thermo block at 37 C
+
+13. 
+* Transfer **100 ul** of **streptavidin beads** to an eppendorf tube.
+* Add **400 ul** of **Buffer B**.
+* Role the tube for **5 minutes**.
+
+* Place the tube on the magnetic rack for 1 minute.
+* Discrad supernatant.
+* Wash twice with 100 ul of Solution A for 2 minutes.
+* Wash once with 100 ul of Solution B for 2 minutes.
+* Resuspend the beads in 100 ul of solution B and keep them until needed.
+
+14. 
+*Get PNK reaction mix reagents ready*
+* Add 80 ul of Nuclease-free water to the ligation reaction.
+* Remove Solution B from the beads.
+* Resuspend beads in 400 ul of buffer B.
+* Add the diluted ligation reaction to the beads. 
+* Rotate the samples at room temperature for 15 minutes.
+
+* Wash the beads for 2 minutes with 400 ul of buffer B.
+* Wash twice for 2 minutes with 400 ul of buffer W at 50 C.
+* Wash once for 2 minutes with 400 ul of Buffer PNK. 
+* Leave the beads in Buffer PNK until needed.
+
+##Phosphorylation (Part 6)
+#### Common instrumentation 
+Thermo block at 37 C for 30 min
+
+5' phosphorylation by T4 polynucleotide kinase (NEB)
+Following NEBs [protocol](https://www.neb.com/protocols/1/01/01/non-radioactive-phosphorylation-with-t4-pnk-or-pnk3-phosphatase-minus)
+
+15.
+* Prepare PNK reaction mix
+    + 2 ul of T4 DNA ligase buffer 10X
+    + 0.5 ul of PNK
+    + 0.5 ul of RNasin
+    + 17 ul of Nuclease free water
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "pnk")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+  
+16.
+* Remove PNK buffer.
+* Resuspend the beads in 20 ul of the PNK reaction.
+* Incubate at 37 C for **30 min**.
+
+##Size separtion (Part 7)
+#### Common instrumentation
++ Termo block at 90 C and then at 37 C.
++ Gel running apparatus
++ Dry ice
+
+Ligated tRNA samples and markers were resolved in a 15% TBE urea acrylamide gel followed by 
+gel purification of tRNA samples between 19 nt and 35 nt guided by the marker 
+
+17.
+* Place the reaction on the magnetic rack and remove supernatant.
+* Add 20 ul of Gel loading Buffer II, 1X.
+* Add 5 ul of Gel loading Buffer II, 1X to the ladder.
+* Heat the samples and ladder at 90 C for **5 min**.
+
+* Transfer samples to ice.
+* **IMPORTANT**: flush the wells before loading. 
+* Load the samples.
+* Run **15%** TBE-Urea gel for **40 min** at **180 V** until lower dye is close to the bottom.
+
+* Stain in **200 ml** of TBE with **10 ul** of Et-Br **10 mins** at **RT**.
+
+* Cut band between **66-87 nt**.
+* Crush the gel piece into small pieces. 
+* Add **400 ul** TE or nuclease-free water.
+* Incubate shaking at **1100 rpm** for **1 h** at **37 C**
+
+* Place on dry ice for **2 min** and 
+* Place back at **1100 rpm** for **1 h** at **37 C**.
+
+18.
+* Placed two 1 cm glass pre-filters into a Spin-X Centrifuge Tuge Filter.
+  
+19.  
+* Transfer the liquid portion of the supernatant into the Costar SpinX column.
+* Spin at **13000 rpm** for **1 min** into a 1.5 ml tube. 
+* Add **0.5 ul** glycogen or glycoblue.
+* Add **40 ul** sodium acetate. 
+* Mix and then add **1 ml** 100% ethanol. 
+* Mix again and precipitate **ON** at **-20C**.
+
+###Fourth day
+#### Timing
+> 1 h -> (6 hs) -> 1 h -> (1h 30 min)
+
+* Spin for **15 min** at **15000 rpm** at **4 C**. 
+
+* Remove supernatant and add **0.5 ml** of **80%** ethanol. 
+* Spin for **5 min** at **15000 rpm** at **4 C**. 
+* Resuspend in **8.3 ul** of water.
+
+##5' ligation (Part 8)
+#### Timing
+#### Common instrumentation
+PCR machine
+
+20. 
+* Add 234 ul of Nuclease-free water to the to 6 ul of stock 5' Adapter.
+* Heat the 5' adapter working solution at 70 C for 2 min.
+* Transfer immediately on ice. 
+
+21.
+* Prepare the ligation mix.
+    + 1.2 ul T4 RNA ligase buffer.
+    + 1 ul of ATP 10 mM.
+    + 0.5 ul of 5'Adaptor.
+    + 1 ul of T4 RNA ligase.
+    + 0.5 ul RNAse OUT.
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "5ligase")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+* Add ligase mix to the RNA and mix.
+* Incubate at 20 C in PCR machine (INC20) for **6 hours**
+
+##Reverse transcription (Part 9)
+#### Timing
+#### Common instrumentation
+PCR machine.
+
+22.
+* Prepare the RT primer mix.
+    + 6 ul of TAIL-seq RT primer (0.5 uM).
+    + 1.5 ul of dNTP 10 mM.
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "rt1")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+* Add the 12 ul of ligated RNA and mix.
+* Heat the mixture in a PCR machine for 5 minutes (INC65).
+* Place the tube immediately on ice. 
+
+23.
+*Prepare the following reagents.
+    + 6 ul of 5X first strand buffer.
+    + 1.5 ul of 100 mM DTT.
+    + 1.5 ul of RNAse OUT.
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "rt2")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+* Add 9 ul of the mix to the RNA sample and mix.
+* Heat the sample at 48 C in a PCR machine for 3 minutes (INC48).
+* Add 1.5 ul of SuperScript III Reverse Transcriptase.
+* Incubate in a PCR machine at 55 C for 1 hour and then at 70 C for 15 minutes (TAILRT).
+* Store the samples at -20 C.
+
+###Fifth day
+> 1 h -> (30 min) -> 1 h 30 min -> (1 h) -> 1 h -> (1 h) -> 2 min -> (1 h) -> 30 min -> (1 h) -> 30 min.
+
+##PCR amplification (Part 10)
+#### Common instrumentation
++ PCR machine.
++ Thermo block
++ Gel running apparatus
++ Dry ice
+
+24.
+* Prepare the PCR reaction mix.
+    + 86.25 ul of Nuclease-free water.
+    + 30 ul of Phusion HF buffer 5X.
+    + 3 ul of Primer TAIL-seq_frow (20 uM).
+    + 1.8 ul of 20 mM dNTP mix.
+    + 1.5 ul of Phusion DNA polymerse.
+```{r, echo=FALSE}
+show(paste("Samples: ", samples, sep=""))
+mix <- subset(mastermix, mix == "phosphatase")  %>% mutate(ul = ul*samples*1.25 )  %>% select(reagent, ul)
+show(mix)
+#kable(phos, caption = paste("Master preparation for ", samples , " samples", sep=""))
+```
+* Add 117 ul of mix to a 1.5 ml low binding tube.
+* Add 3 ul of Primer TAIL-seq_rev (20 uM)
+```{r, echo=FALSE}
+primers <- subset(experiment, type=="sample")[,c("value_3", "value_4")]
+rownames(primers) <- seq(length=nrow(primers))
+colnames(primers) <- c("Code", "Primer")
+show(primers)
+```
+* Add 30 ul of cDNA.
+* Mix and split in 5 reactions of 30 uls.
+* Do the following PCR reaction.
+  + 30 s at 98 C
+  + 12 cyles
+    + 10 s at 98 C
+    + 30 s at 60 C
+    + 30 s at 72 C
+  + 5 min at 72 C
+  + hold at 4 C
+  
+25.
+* Pool the samples from the same cDNA.
+* From the QIAquick PCR purification Kit add **5 volumes** of **Buffer PB** and mix.
+* Add **10 ul** of **3 M sodium acetate** and mix.
+* Transfer the mix to a **QIAquick column**.
+* Centrifuge at max speed for 1 minute. 
+* Discard flow-through.
+* Add **0.75 ml** of **Buffer PE** to the QIAquick column.
+* Centrifuge at **max speed** for **1 minute**.
+* Discard supernatant.
+* Open the lids of the tubes.
+* Centrifuge at **max speed** for **5 minutes**.
+* Place the column in a 1.5 low binding tube. 
+* Add on the center of the column **27.5 ul** of **Buffer EB**.
+* Centrifuge at **max speed** for **1 minute**.
+
+##Gel purifiaction (Part 11)
+
+* Add **5 ul** of **6x loading dye**.
+* Load the samples.
+* Use **5 ul** of **small RNA ladder**.
+* Run **6% TBE gel** for **1 h** at **100 V** until lower dye is close to the bottom.
+
+* Stain in **200 ml** of TBE with **10 ul** of Et-Br **10 mins** at **RT**.
+
+* Cut band between **160-180 nt**. (140 nt + range)
+* Crush the gel piece into small pieces. 
+* Add **400 ul** TE or RNASe-free water.
+* Incubate shaking at **1100 rpm** for **1 h** at **37 C**
+
+* Place on dry ice for **2 min** and 
+* Place back at **1100 rpm** for **1 h** at **37 C**.
+
+26.
+* Placed two 1 cm glass pre-filters into a Costar SpinX column
+  
+27.  
+* Transfer the liquid portion of the supernatant into the Costar SpinX column.
+* Spin at **13000 rpm** for **1 min** into a 1.5 ml tube. 
+* Add **0.5 ul** glycogen or glycoblue.
+* Add **40 ul** sodium acetate. 
+* Mix and then add **1 ml** 100% ethanol. 
+* Mix again and precipitate **1 hour** at **-80C**.
+
+* Spin for **15 min** at **15000 rpm** at **4 C**. 
+
+* Remove supernatant and add **0.5 ml** of **80%** ethanol. 
+* Spin for **5 min** at **15000 rpm** at **4 C**. 
+* Resuspend in **12 ul** of water.
+
+##Sequencing (Part 12)
+
+###Nano dorp reading
+```{r, echo=FALSE}
+reading <- subset(experiment, type=="sample")[,c("value_3", "value_4","value_5")]
+rownames(reading) <- seq(length=nrow(reading))
+colnames(reading) <- c("Code", "Primer", "Library")
+reading <- reading %>% mutate(Concentration = "", Volume = "")
+kable(reading, caption = "Libraries results")
+write.csv2(reading, paste("../views/", name, "/results.csv", sep=""))
+```
+
+Illumina HiSeq 2500
+
+###Reagents
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+reagents      <- read.csv("../data/reagents.csv", sep=";") %>% select(Reagent, catalog) %>% unique() %>% arrange(Reagent)
+reagents_fill <- reagents %>% mutate(temperature = "", place = "", place_row = as.integer(""), place_column = as.integer(""), place_depth = as.integer(""), 
+                                                  box   = "", box_row   = as.integer(""), box_column   = as.integer(""), 
+                                                  date = as.Date("2000-01-01"), percent_left = as.integer(""))
+write.csv2(reagents_fill, "../views/update_reagents.csv")
+reagents_fill <- reagents %>% mutate(date = as.Date("2000-01-02"))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+storage      <- read.csv("/Volumes/Promise_Pegasus/marcos_dropbox/Dropbox/Lab/Marcos_files/Organization/reagents_marcos/views/storage.csv", sep=",")
+storage$date <- as.Date(storage$date, format = "%m/%d/%y")
+storage      <- storage[,!colnames(storage) %in% c("X", "X.1")]
+storage      <- bind_rows(reagents_fill, storage)
+select       <- storage %>% group_by(Reagent, catalog) %>% summarise(max(date))
+colnames(select) <- c("Reagent", "catalog", "date")
+storage      <- left_join(select, storage) %>% unique()
+kable(storage, caption = "reagents stored")
+```
+
+###Samples
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+samples            <- subset(experiment, type == "sample") %>% select(value_1, value_2)  
+colnames(samples)  <- c("sample","type")
+samples_fill       <- samples %>% mutate(temperature = "", place = "", place_row = as.integer(""), place_column = as.integer(""), place_depth = as.integer(""), 
+                                                  box   = "", box_row   = as.integer(""), box_column   = as.integer(""), 
+                                                  date = as.Date("2000-01-01"), percent_left = as.integer(""))
+
+results            <- subset(experiment, type == "sample") %>% select(value_5, value_6)  
+colnames(results)  <- c("sample","type")
+results_fill       <- results %>% mutate(temperature = "", place = "", place_row = as.integer(""), place_column = as.integer(""), place_depth = as.integer(""), 
+                                                  box   = "", box_row   = as.integer(""), box_column   = as.integer(""), 
+                                                  date = as.Date("2000-01-01"), percent_left = as.integer(""))
+
+samples_fill <- bind_rows(samples_fill, results_fill)
+
+write.csv2(samples_fill, paste("../views/", name, "/update_samples.csv", sep = ""))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+storage      <- read.csv("/Volumes/Promise_Pegasus/marcos_dropbox/Dropbox/Lab/Marcos_files/Organization/samples_marcos/views/storage.csv", sep=",")
+storage$temperature <- as.character(storage$temperature)
+storage$date <- as.Date(storage$date, format = "%m/%d/%y")
+storage      <- storage[,!colnames(storage) %in% c("X", "X.1")]
+storage      <- bind_rows(samples_fill, storage)
+select       <- storage %>% group_by(sample, type) %>% summarise(max(date))
+colnames(select) <- c("sample", "type", "date")
+storage      <- left_join(select, storage) %>% unique()
+storage      <- left_join(samples_fill[,c("sample", "type")], storage)
+kable(storage, caption = "samples stored")
+```
+
+```{r, echo=FALSE}
+
+```
+
+###Original protocol from paper
+
+[RNA Polymerase III Output Is Functionally Linked to tRNA Dimethyl-G26 Modification](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005671)
+
+Aneeshkumar G. Arimbasseri1, Nathan H. Blewett1, James R. Iben1, Tek N. Lamichhane1??,
+Vera Cherkasova1, Markus Hafner2, Richard J. Maraia3*
+
+tRNA-HydroSeq
+For tRNA isolation, 50 ??g of total RNA was separated on a 6% TBE-Urea polyacrylamide gel
+(21 cm X 18 cm X 0.15 cm) followed gel purification of RNA shorter than 5S rRNA. 300 ng
+purified tRNA was hydrolyzed in 10 mM bicarbonate buffer pH 9.7 at 90??C for 5 min. The
+hydrolyzed RNA was dephosphorylated using calf intestinal alkaline phosphatase (NEB) followed
+by 5' phosphorylation by T4 polynucleotide kinase (NEB). Barcoded, pre-adenylated, 3???
+blocked Illumina adapters were ligated to the 3??? end using T4 Rnl2(1???249)K227Q enzyme
+(NEB). After heat inactivation, all ligated samples were pooled in ethanol and precipitated. In
+parallel, two size marker RNA oligos of 19 and 35 nt were radiolabeled using T4 polynucleotide
+kinase and ligated to pre-adenylated adapter and pooled. Ligated tRNA samples and markers
+were resolved in a 15% TBE urea acrylamide gel followed by gel purification of tRNA samples
+between 19 nt and 35 nt guided by the marker lanes. 5??? adapter was ligated to the gel purified
+samples using T4 RNA ligase I (Thermo). RNA with ligated 5??? and 3??? adapters were gel purified,
+subjected to reverse transcription (Superscript III, Life Technologies), amplified by PCR
+(10???12 cycles) and the band was gel purified and sequenced using Illumina HiSeq 2500.
+
+```{r}
+
+```
+
