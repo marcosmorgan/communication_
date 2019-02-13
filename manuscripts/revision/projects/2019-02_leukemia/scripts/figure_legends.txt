@@ -1,0 +1,89 @@
+Figure 4: 
+
+Fig. 4. YTHDF2 targets m6A methylated transcripts for degradation. 
+
+(A) Transcript expression scatter plot from Ythdf2CTL and Ythdf2CKO pre-leukemic cells. Significantly upregulated or downregulated transcripts are highlighted in red (adjusted moderate t-student test, p < 0.05). Five biological replicates were used for each condition. 
+
+(B) m6A peak strength (-log10q) in Ythdf2CTL pre-leukemic cells for transcripts grouped according to expression changes between Ythdf2CTL and Ythdf2CKO pre-leukemic cells is shown (down, genes significantly downregulated in Ythdf2CKO (p < 0.05); unchanged, genes not significantly changing in Ythdf2CKO; up, genes significantly upregulated in Ythdf2CKO (p < 0.05). ** indicates p < 0.01, Mann-Whitney, two-sided test). The upper and lower quartiles and the median are indicated for each group.  
+
+(C) Violin plots showing expression change between Ythdf2CTL and Ythdf2CKO pre-leukemic cells for not methylated (no m6A), methylated (m6A, -log10q ≤ 25) and highly methylated (m6A high, -log10q > 25) transcripts (** indicates p < 0.01, Mann-Whitney, two sided test). The upper and lower quartiles and the median are indicated for each group. 
+
+(D) Cumulative distributions of transcripts’ expression change in Ythdf2CTL and Ythdf2CKO pre-leukemic cells for not methylated, methylated and highly methylated transcripts as in C. 
+
+(E) Mode decay curves for Ythdf2CTL (black) and Ythdf2CKO (red) pre-leukemic cells transcriptomes are shown. The shaded areas indicate the first and third quantile decay curves range for each genotype. Transcript decay was estimated by the normalized cDNA T to C conversion rate at 0, 60, 180 and 540 minutes after 4SU removal. Transcripts half-live modes for each genotype are indicated whith horizontal dotted lines and are also shown at the panel top.
+
+(F) Cummulative distributions of transcripts' half-life in Ythdf2CTL (left panel) and Ythdf2CKO (right panel) pre-leukemic cells are shown for not methylated, methylated and highly methylated transcripts as in C. The half-life change significance between the methylated and not methylated transcripts are indicated (Mann-Whitney, two sided test).  
+
+(G) Cummulative distributions of relative stability change between Ythdf2CTL and Ythdf2CKO pre-leukemic cells are shown for not methylated, methylated and highly methylated transcripts as in C. The relative stability change significance between the methylated and not methylated transcripts are indicated (Mann-Whitney, two sided test).
+
+(H) Volcano plot of translational efficiency change between Ythdf2CTL and Ythdf2CKO pre-leukemic cells. Not methylated, methylated and highly methylated transcripts defined as in C, are shown in balck, green and red, repsectively. The number of transcripts with a significant two fold reduction in translational efficiency are indicated for each group.  
+
+(I) Cummulative distributions of translational efficiency of not methylated (right panel), methylated (center panel) and highly methylated transcripts (left panel) defined as in C are shown for Ythdf2CTL (black) and Ythdf2CKO (read) pre-leukemic cells.
+
+(J) Violin plots of m6A peak strength (-log10q) in MA9.3ITD and NOMO-1 cells for transcripts grouped according to expression changes between Ythdf2CTL and Ythdf2CKO pre-leukemic cells as in C are shown. (*, p < 0.05, **, p < 0.01, Mann-Whitney, two-sided test). The upper and lower quartiles and the median are indicated for each group. 
+
+(K) CPDB analysis of genes significantly upregulated in Ythdf2CKO pre-leukemic cells (p < 0.05) with high m6A levels (-log10q > 25) in mouse pre-leukemic cells and methylated also in human AML (MA9.3ITD and NOMO-1) cell lines. 
+
+(L) GSEA using LSC signature gene set for genes defined in panel H and that negatively correlate with YTHDF2 expression across human AML samples. 
+
+(M) m6A IP read coverage (blue) from Ythdf2CTL pre-leukemic cells along the Trnfrs1b genomic locus (upper panel) and m6A IP read coverage from NOMO-1 and MA9.3ITD cells along TNFRSF1B genomic locus (lower panels) are shown. Input coverage is shown in green. Gene models are depicted on top. 
+
+(N) Tnfrsf1b enrichment in YTHDF2 immuno-precipitates from Ythdf2CTL pre-leukemic cells is shown. Tnfrsf1b background levels were determined using Ythdf2CKO pre-leukemic cells. Data are mean ± s.e.m., n = 3. *, P < 0.05.      
+
+(O) Decay curves for Trnfrs1b in Ythdf2CTL (top panel) and Ythdf2CKO (bottom panel) pre-leukemic cells transcriptomes are shown. Transcript decay was estimated by the normalized cDNA T to C conversion rate at 0, 60, 180 and 540 minutes after 4SU removal. The center value and the error bars at each time point indicate the conversion rate mean and standard deviation, respectively. The conversion rates for each bioligical replicate are indicated with dots. For each genotype the Trnfrs1b half-live is also shown.
+
+(P) Representative FACS plots showing the expression of TNFRSF1B on cell surface of Ythdf2CTL and Ythdf2CKO pre-leukemic cells. Inner graph displays the quantification of TNFRSF1B expression. Data are mean ± s.e.m, n = 4 per genotype. **, P < 0.01. 
+
+(Q) Percentage of Annexin V+DAPI− Ythdf2CTL and Ythdf2CKO pre-leukemic cells treated with 10 ng/ml TNF-α at 0 and 6 hour timepoints are shown. Data are mean ± s.e.m., n = 3. *, P < 0.05.
+
+
+Supplementary Figure X:
+
+(A) m6A peak occupancy along a transcript body model are shown for Ythdf2CTL (balck) and Ythdf2CKO (red) pre-leukemic cells. One representative sample of three biological replicates is shown for each genotype. Transcripts models were extended 400 nucleotides upstream and downstream of the start and stop codons, respectively. 
+
+(B) m6A-seq motif enrichment and associated P-value are shown for each genotype.  
+
+(C) m6A peaks overlaps with different transcript regions (5'UTR; start codon; coding sequence, CDS; stop codon; and 3'UTR) are shown for each condition. 
+
+
+Supplementary Figure Y:
+
+(A) Transcript expression scatter plot from Ythdf2CTL and Ythdf2CKO leukemic cells. Significantly upregulated or downregulated transcripts are highlighted in red (Adjusted moderate t-student test, p < 0.05). Four biological replicates were used for each condition. 
+
+(B) m6A peak significance (-log10q) in pre-leukemic cells for transcripts grouped according to expression changes between Ythdf2CTL and Ythdf2CKO leukemic cells is shown (down, genes significantly downregulated in Ythdf2CKO (p < 0.05); unchanged, genes not significantly changing in Ythdf2CKO; up, genes significantly upregulated in Ythdf2CKO (p < 0.05). ** indicates p < 0.01, Mann-Whitney, two-sided test). The upper and lower quartiles and the median are indicated for each group.  
+
+(C) Violin plots showing expression change between Ythdf2CTL and Ythdf2CKO leukemic cells for pre-leukemic cells not methylated (no m6A), methylated (m6A, -log10q ≤ 25) and highly methylated (m6A high, -log10q > 25) transcripts (** indicates p < 0.01, Mann-Whitney, two sided test). The upper and lower quartiles and the median are indicated for each group. 
+
+(D) Cumulative distribution of transcripts’ expression change in Ythdf2CTL and Ythdf2CKO pre-leukemic cells for not methylated, methylated and highly methylated transcripts as in C. 
+
+
+
+
+
+#########
+
+Fig. 4. YTHDF2 targets m6A methylated transcripts for degradation. 
+
+(A) Transcript expression scatter plot from Ythdf2CTL and Ythdf2CKO pre-leukemic cells. Significantly upregulated or downregulated transcripts are highlighted in red (Fold change, 1.4; adjusted moderate t-student test, p < 0.05). Five biological replicates were used for each condition. 
+
+(B) m6A peak occupancy along a transcript body model in Ythdf2CTL pre-leukemic cells. One representative sample of three biological replicates is shown. Transcripts models were extended 400 nucleotides upstream and downstream of the start and stop codons, respectively. The motif enrichment (lower inset) together with m6A peaks distribution along different transcript regions (upper inset) is shown. 
+
+(C) m6A peak strength (-log10q) in Ythdf2CTL pre-leukemic cells for transcripts grouped according to expression changes between Ythdf2CTL and Ythdf2CKO pre-leukemic cells is shown (down, genes significantly downregulated in Ythdf2CKO (p < 0.05); unchanged, genes not significantly changing in Ythdf2CKO; up, genes significantly upregulated in Ythdf2CKO (p < 0.05). ** indicates p < 0.01, Mann-Whitney, two-sided test). The upper and lower quartiles and the median are indicated for each group.  
+
+(D) m6A peak occupancy along a transcript body model in Ythdf2CTL pre-leukemic cells for genes grouped according to expression changes between Ythdf2CTL and Ythdf2CKO pre-leukemic cells is shown. (Up and down are as defined in panel C. Unchanged, subset of transcripts not significantly changing in Ythdf2CKO cells with similar mean expression levels as transcripts in up and down categories) 
+
+(E) Violin plots showing expression change between Ythdf2CTL and Ythdf2CKO pre-leukemic cells for not methylated (no m6A), methylated (m6A, -log10q ≤ 25) and highly methylated (m6A high, -log10q > 25) transcripts (** indicates p < 0.01, Mann-Whitney, two sided test). The upper and lower quartiles and the median are indicated for each group. 
+
+(F) Cumulative distribution of transcripts’ expression change in Ythdf2CTL and Ythdf2CKO pre-leukemic cells for not methylated, methylated and highly methylated transcripts as in E. 
+
+(G) Violin plots of m6A peak strength (-log10q) in MA9.3ITD and NOMO-1 cells for transcripts grouped according to expression changes between Ythdf2CTL and Ythdf2CKO pre-leukemic cells as in C are shown. (*, p < 0.05, **, p < 0.01, Mann-Whitney, two-sided test). The upper and lower quartiles and the median are indicated for each group. 
+
+(H) CPDB analysis of genes significantly upregulated in Ythdf2CKO pre-leukemic cells (p < 0.05) with high m6A levels (-log10q > 25) in mouse pre-leukemic cells and methylated also in human AML (MA9.3ITD and NOMO-1) cell lines. 
+
+(I) GSEA using LSC signature gene set for genes defined in panel H and that negatively correlate with YTHDF2 expression across human AML samples. 
+
+(J) m6A IP read coverage (blue) from Ythdf2CTL pre-leukemic cells along the Trnfrs1b genomic locus (upper panel) and m6A IP read coverage from NOMO-1 and MA9.3ITD cells along TNFRSF1B genomic locus (lower panels) are shown. Input coverage is shown in green. Gene models are depicted on top. 
+
+(K) Representative FACS plots showing the expression of TNFRSF1B on cell surface of Ythdf2CTL and Ythdf2CKO pre-leukemic cells. Inner graph displays the quantification of TNFRSF1B expression. Data are mean ± s.e.m, n = 4 per genotype. **, P < 0.01. 
+
+(L) The graph shows the percentage of Annexin V+DAPI− Ythdf2CTL and Ythdf2CKO pre-leukemic cells treated with 10 ng/ml TNF-α at 0 and 6 hour timepoints. Data are mean ± s.e.m., n = 3. *, P < 0.05.

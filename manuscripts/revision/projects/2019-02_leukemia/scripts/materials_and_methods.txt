@@ -1,0 +1,15 @@
+Materials and methods
+
+Affymetrix
+
+XXX
+
+SLAM-seq
+
+SLAM-seq libraries were prepared using the lexogen catabolic kit (cat. no. 062.24) and the lexogen QuantSeq 3′ mRNA-Seq Library Prep Kit FWD from Illumina (cat. no. 015.24) in both cases following manufacuters' instructions. S4U was used at 4 uM, as determined by the cell viability titration assay. Medium with 4SU was used for pre-leukemic cells labaleing for 12 hours and was later replaced with 4SU-free medium (time 0). Cells were collected immediately after medium change and at 1, 3, 6 and 9 hours. Libraries were sequenced using a Illumina HiSeq platform in a 50 bp single-end mode. Biological tripicates for both Ythdf2CTL and Ythdf2cKO pre-leukemic cells were used to generte the different libraries sets. SLAM-seq libraries were analyzed as previously described (Herzog). Briefly, T to C conversion rates were obtained using the slamdunk pipeline. Conversion rates accross different time points were normalized to time 0 for each gene and were used to fit a first order decay reaction with the R stats package nls function.     
+
+RIBO-seq
+
+RIBO-seq libraries were prepared as previously described (Reid, 2015). Briefly, pre-leukemic cells were lyzed with CaCl2 4 mM, MgCl 10 mM, K-HEPES pH 7.2 25 mM, KOAc 200 mM and NP-40 1%. The lysate was cleared from cell debries, ditulted 1:1 in water, and digested with MNase 10 ug/ml for 30 minutes at 37C. Digested RNA was extracted with QIAzol and later treated with PNK (NEB) for 30 minutes at 37C. To isolate ribosome-protected mRNA fragments (RPFs), the PNK treated RNA was resolved on a 15% Novex TBE-Urea Gel (EC6885BOX) and RPFs 25 to 40 nucleotides long were excised and purified. Libraries were then prepared using the NEBNext® Multiplex Small RNA Library Prep Set for Illumina following manufacturers instructions. For input controls, total RNA was extracted from the pre-LSCs lysets before MNase digestion using QIAzol. Samples were then Ribo-depleted using the Epicentre Ribo-zero kit (cat. no. MRZH116) and libraries were generated using the SENSE Total RNA-Seq Library Prep Kit (cat no. 009.08) following manufacturer's instructions. Libraries were sequenced with the Illumina HiSeq platform in a 50 bp single-end mode. Biological tripicates were used to generate libraries for both Ythdf2CTL and Ythdf2cKO pre-leukemic cells. For the Ribo-seq analysis, we used Kallisto (Bray, 2016) to obtain read counts per gene for the RPF and mRNA libraries. Read count were then used to calculate the differential translational efficiency between Ythdf2CTL and Ythdf2cKO pre-leukemic cells with Xtail (Xiao, 2016). To estimate the relative translational efficiency for genes in each condition, we compared RPF and mRNA read counts using DESeq2 (Love, 2014).  
+
+To determine the gene ontology enrichment of differentially expressed genes, we used the the topGO package. Fisher's exact test was used for both the biological process and molecular function ontologies.  
